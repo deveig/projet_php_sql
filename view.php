@@ -79,21 +79,29 @@
                             <?php
                             }
 
-                        if ($error === 'required fields') {
-                        ?>
-                            <tr>
-                                <td class="warning" colspan="4">All fields are required !</td>
-                            </tr>
-                        <?php
-                        }
+                            if ($error === 'required fields') {
+                            ?>
+                                <tr>
+                                    <td class="warning" colspan="4">All fields are required !</td>
+                                </tr>
+                            <?php
+                            }
+                            
+                            if ($error === 'type') {
+                            ?>
+                                <tr>
+                                    <td class="warning" colspan="4">Your ingredient has a name and an unit, it quantity is a number.</td>
+                                </tr>
+                            <?php
+                            }
 
-                        if ($error === 'no ingredient to remove') {
-                        ?>
-                            <tr>
-                                <td class="warning" colspan="4">No ingredient to remove !</td>
-                            </tr>
-                        <?php
-                        } ?>
+                            if ($error === 'no ingredient to remove') {
+                            ?>
+                                <tr>
+                                    <td class="warning" colspan="4">No ingredient to remove !</td>
+                                </tr>
+                            <?php
+                            } ?>
                     </tbody>
                 </table>
             </form>
