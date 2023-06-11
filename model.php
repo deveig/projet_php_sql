@@ -2,10 +2,16 @@
 
 class Ingredients
 {
-    function display()
+    static $db;
+
+    public function __construct()
     {
-        $db = new PDO('mysql:host=localhost;dbname=recipe', 'root', 'root');
-        $query = $db->prepare('SELECT ingredient, quantity, unit FROM ingredients');
+        self::$db = new PDO('mysql:host=localhost;dbname=recipe_php', 'root', 'root');
+    }
+
+    public function display()
+    {
+        $query = self::$db->prepare('SELECT * FROM ingredients');
         $query->execute();
         return $query->fetchAll();
     }
@@ -13,28 +19,22 @@ class Ingredients
 
 class MoreIngredient extends Ingredients
 {
-    function add($ingredient, $quantity, $unit)
+    public function add($ingredient, $quantity, $unit)
     {
-        $db = new PDO('mysql:host=localhost;dbname=recipe', 'root', 'root');
-        $query = $db->prepare('INSERT INTO ingredients (ingredient, quantity, unit) VALUES (?, ?, ?)');
+        $query = parent::$db->prepare('INSERT INTO ingredients (ingredient, quantity, unit) VALUES (?, ?, ?)');
         $query->execute(array($ingredient, $quantity, $unit));
-        return $this->display();
     }
 }
 
 class LessIngredient extends Ingredients
 {
-    function remove()
+    public function remove($ingredients)
     {
-        $db = new PDO('mysql:host=localhost;dbname=recipe', 'root', 'root');
-        $first_request = $db->prepare('SELECT * FROM ingredients');
-        $first_request->execute();
-        $ingredients = $first_request->fetchAll();
-        $index = $first_request->rowCount() - 1;
+        $index = count($ingredients) - 1;
         $id = $ingredients[$index]['id'];
-        $second_request = $db->prepare('DELETE FROM ingredients WHERE id = :id');
-        $second_request->bindValue(':id', $id);
-        $second_request->execute();
-        return $this->display();
+        $secondRequest = parent::$db->prepare('DELETE FROM ingredients WHERE id = :id');
+        $secondRequest->bindValue(':id', $id);
+        $secondRequest->execute();
+        return true;
     }
 };

@@ -68,17 +68,16 @@
                             <td><input id="metric" name="metric"></td>
                         </tr>
                         <?php
-
-                        for ($i = 0; $i < count($ingredients); $i++) {
-                        ?>
-                            <tr>
-                                <td><?= $i + 1 ?></td>
-                                <td><?= htmlspecialchars($ingredients[$i]['ingredient']) ?></td>
-                                <td><?= htmlspecialchars($ingredients[$i]['quantity']) ?></td>
-                                <td><?= htmlspecialchars($ingredients[$i]['unit']) ?></td>
-                            </tr>
-                        <?php
-                        }
+                            for ($i = 0; $i < count($ingredients); $i++) {
+                            ?>
+                                <tr>
+                                    <td><?= $i + 1 ?></td>
+                                    <td><?= htmlspecialchars($ingredients[$i]['ingredient']) ?></td>
+                                    <td><?= htmlspecialchars($ingredients[$i]['quantity']) ?></td>
+                                    <td><?= htmlspecialchars($ingredients[$i]['unit']) ?></td>
+                                </tr>
+                            <?php
+                            }
 
                         if ($error === 'required fields') {
                         ?>
@@ -87,7 +86,7 @@
                             </tr>
                         <?php
                         }
-                        
+
                         if ($error === 'no ingredient to remove') {
                         ?>
                             <tr>
