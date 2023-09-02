@@ -6,7 +6,7 @@ class Ingredients
 
     public function __construct()
     {
-        self::$db = new PDO('mysql:host=localhost;dbname=recipe', 'root', 'root');
+        self::$db = new PDO('mysql:host=localhost:8889;dbname=recipe', 'root', 'root');
     }
 
     public function display()
