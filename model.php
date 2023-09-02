@@ -32,9 +32,9 @@ class LessIngredient extends Ingredients
     {
         $index = count($ingredients) - 1;
         $id = $ingredients[$index]['id'];
-        $secondRequest = parent::$db->prepare('DELETE FROM ingredients WHERE id = :id');
-        $secondRequest->bindValue(':id', $id);
-        $secondRequest->execute();
+        $second_request = parent::$db->prepare('DELETE FROM ingredients WHERE id = :id');
+        $second_request->bindValue(':id', $id);
+        $second_request->execute();
         return true;
     }
 };

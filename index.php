@@ -15,9 +15,9 @@ try {
                 $quantity = htmlspecialchars($_POST["quantity"]);
                 $unit = htmlspecialchars($_POST["metric"]);
 
-                $newIngredient = new MoreIngredient();
-                $newIngredient->add($ingredient, $quantity, $unit);
-                $ingredients = $newIngredient->display();
+                $new_ingredient = new MoreIngredient();
+                $new_ingredient->add($ingredient, $quantity, $unit);
+                $ingredients = $new_ingredient->display();
             } else {
                 $error = 'type';
             }
@@ -28,9 +28,9 @@ try {
 
     if (isset($_POST["minus"])) {
         if (!empty($ingredients)) {
-            $deletedIngredient = new LessIngredient();
-            $deletedIngredient->remove($ingredients);
-            $ingredients = $deletedIngredient->display();
+            $deleted_ingredient = new LessIngredient();
+            $deleted_ingredient->remove($ingredients);
+            $ingredients = $deleted_ingredient->display();
         } else {
             $error = 'no ingredient to remove';
         }
