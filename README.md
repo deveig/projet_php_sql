@@ -1,11 +1,11 @@
-# Cooking recipe page web
+# Cooking recipe web page
 
-Development of a cooking recipe page web with PHP and using MAMP.
+Development of a cooking recipe web page with PHP and using MAMP.
 
-## Root folder : htdocs
+## Root folder
 
-Place project folder in htdocs folder of MAMP.
+Place project folder in 'htdocs' folder of MAMP.
 
 ## Database with phpMyAdmin
 
-Import recipe.sql file to create the database with phpMyAdmin.
+Import 'recipe.sql' file to create the database with phpMyAdmin. See parameters of connection to MySQL Server in webstart page of MAMP. 
