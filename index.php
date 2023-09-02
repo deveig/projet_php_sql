@@ -10,7 +10,7 @@ try {
             
     if (isset($_POST["plus"])) {
         if (!empty($_POST["name"]) && !empty($_POST["quantity"]) && !empty($_POST["metric"])) {
-            if (preg_match("/\D+/", $_POST["name"]) && preg_match("/\d+/", $_POST["quantity"]) && preg_match("/\D+/", $_POST["metric"])) {
+            if (preg_match("/\d+/", $_POST["name"]) === 0 && preg_match("/\D+/", $_POST["quantity"]) === 0 && preg_match("/\d+/", $_POST["metric"]) === 0) {
                 $ingredient = htmlspecialchars($_POST["name"]);
                 $quantity = htmlspecialchars($_POST["quantity"]);
                 $unit = htmlspecialchars($_POST["metric"]);

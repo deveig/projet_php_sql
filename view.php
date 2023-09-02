@@ -90,7 +90,7 @@
                             if ($error === 'type') {
                             ?>
                                 <tr>
-                                    <td class="warning" colspan="4">Your ingredient has a name and an unit, it quantity is a number.</td>
+                                    <td class="warning" colspan="4">Name and unit are words, quantity is a number.</td>
                                 </tr>
                             <?php
                             }
