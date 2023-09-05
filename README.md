@@ -1,8 +1,8 @@
 # Cooking recipe web page
 
-Development of a cooking recipe web page with PHP and using MAMP.
+Development of a cooking recipe web page with PHP and using [MAMP](https://www.mamp.info/en/downloads/).
 
-## Root folder
+## Root folder 
 
 Place project folder in 'htdocs' folder of MAMP.
 
