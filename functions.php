@@ -6,10 +6,10 @@ function display_ingredients($list_of_ingredients) {
 
 function add_ingredient($name, $quantity, $metric, $new_ingredient) {
     if (!empty($name) && !empty($quantity) && !empty($metric)) {
-        if (preg_match("/\d+/", $_POST["name"]) === 0 && preg_match("/\D+/", $_POST["quantity"]) === 0 && preg_match("/\d+/", $_POST["metric"]) === 0) {
-            $ingredient = htmlspecialchars($_POST["name"]);
-            $quantity = htmlspecialchars($_POST["quantity"]);
-            $unit = htmlspecialchars($_POST["metric"]);
+        if (preg_match("/\d+/", $name) === 0 && preg_match("/\D+/", $quantity) === 0 && preg_match("/\d+/", $metric) === 0) {
+            $ingredient = htmlspecialchars($name);
+            $quantity = htmlspecialchars($quantity);
+            $unit = htmlspecialchars($metric);
 
             $new_ingredient->add($ingredient, $quantity, $unit);
             return false;
