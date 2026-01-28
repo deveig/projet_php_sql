@@ -10,9 +10,14 @@ class DatabaseConnection
 
     public static function getConnection() {
         if(self::$instance === null) {
-            self::$instance = new PDO('mysql:host=localhost:8889;dbname=recipe', 'root', 'root');
+            self::$dotenv = Dotenv::createImmutable(__DIR__);
+            self::$dotenv->load();
+            $db_url = $_ENV['DB_URL'];
+            $db_username = $_ENV['DB_USERNAME'];
+            $db_password = $_ENV['DB_PASSWORD'];
+            self::$instance = new PDO("mysql:host={$db_url}", $db_username, $db_password);
         }
-        return self::$instance;
+        return self::$instance; 
     }
 }
 
