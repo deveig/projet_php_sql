@@ -40,6 +40,6 @@ jobs:
           push: true
           tags: doc12mp/mysql_app:php_app
           build-args: |
-            DB_URL="secrets.DB_URL_PHP"
+            DB_URL=${{ secrets.DB_URL_PHP }}
             DB_USERNAME=${{ secrets.DB_USERNAME_PHP }}
             DB_PASSWORD=${{ secrets.DB_PASSWORD_PHP }}
