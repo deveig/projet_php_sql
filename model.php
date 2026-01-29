@@ -1,11 +1,14 @@
 <?php
+require __DIR__ . '/vendor/autoload.php';
+
+use Dotenv\Dotenv;
 
 class DatabaseConnection 
 {
     private static $instance = null;
 
     private static $dotenv;
-    
+
     private function __construct() {
         // Le constructeur est privé pour empêcher l'instanciation directe
     }
