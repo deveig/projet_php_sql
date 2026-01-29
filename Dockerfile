@@ -9,6 +9,7 @@ RUN php -r "unlink('composer-setup.php');"
 RUN mv composer.phar /usr/local/bin/composer
 RUN ( curl -sSLf https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions -o - || echo 'return 1' ) | sh -s \ zip pdo_mysql
 WORKDIR /var/www/html/
+COPY .env .env
 RUN composer require vlucas/phpdotenv
 COPY . .
 RUN composer install
