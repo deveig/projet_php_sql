@@ -15,7 +15,7 @@ class DatabaseConnection
 
     public static function getConnection() {
         if(self::$instance === null) {
-            self::$dotenv = Dotenv::createImmutable(__DIR__, ".env.prod");
+            self::$dotenv = Dotenv::createImmutable(__DIR__, ".config");
             self::$dotenv->load();
             $db_url = $_ENV['DB_URL'];
             $db_username = $_ENV['DB_USERNAME'];
