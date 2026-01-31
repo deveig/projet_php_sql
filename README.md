@@ -15,3 +15,5 @@ Import 'recipe.sql' file to create the database with phpMyAdmin. See parameters 
 Install PhpUnit (https://docs.phpunit.de/en/12.1/). Command line to run tests is `phpunit ./tests/unit/IngredientTest.php`.
 
 ## Workflow GitHub Actions
+
+To test and run application on Docker.
