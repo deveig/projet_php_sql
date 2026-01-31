@@ -14,9 +14,9 @@ jobs:
           extensions: zip
       - name: Create .env file
         run: |
-          echo "DB_URL=${{secrets.DB_URL_PHP}}" >> .env
-          echo "DB_USERNAME=${{secrets.DB_USERNAME_PHP}}" >> .env
-          echo "DB_PASSWORD=${{secrets.DB_PASSWORD_PHP}}" >> .env
+          echo 'DB_URL=${{secrets.DB_URL_PHP}}' >> .env
+          echo 'DB_USERNAME=${{secrets.DB_USERNAME_PHP}}' >> .env
+          echo 'DB_PASSWORD=${{secrets.DB_PASSWORD_PHP}}' >> .env
       - name: Install Dotenv
         run: composer require vlucas/phpdotenv
       - name: Run test
