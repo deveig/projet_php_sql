@@ -39,7 +39,6 @@ jobs:
         with:
           push: true
           tags: doc12mp/mysql_app:php_app
-          driver: docker
           build-args: |
             DB_URL=${{ secrets.DB_URL_PHP }}
             DB_USERNAME=${{ secrets.DB_USERNAME_PHP }}
