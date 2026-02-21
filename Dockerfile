@@ -22,8 +22,11 @@ RUN composer require vlucas/phpdotenv
 COPY . .
 RUN composer install
 WORKDIR /etc/apache2/
-RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache.key -out /etc/ssl/certs/apache.crt -subj "/CN=www.example.com"
-RUN sed -i '/SSLCertificateFile/c\SSLCertificateFile /etc/ssl/certs/apache.crt' sites-available/default-ssl.conf
-RUN sed -i '/SSLCertificateKeyFile/c\SSLCertificateKeyFile /etc/ssl/private/apache.key' sites-available/default-ssl.conf
+RUN mkdir certificate
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/certificate/apache.key -out /etc/apache2/certificate/apache.crt -subj "/CN=www.example.com"
+RUN sed -i '/SSLCertificateFile/c\SSLCertificateFile /etc/apache2/certificate/apache.crt' sites-available/default-ssl.conf
+RUN sed -i '/SSLCertificateKeyFile/c\SSLCertificateKeyFile /etc/apache2/certificate/apache.key' sites-available/default-ssl.conf
 RUN a2enmod ssl
 RUN a2ensite default-ssl
+WORKDIR /sbin/
+CMD ["service", "apache2", "reload"]
