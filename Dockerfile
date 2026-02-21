@@ -29,4 +29,4 @@ RUN sed -i '/SSLCertificateKeyFile/c\SSLCertificateKeyFile /etc/apache2/certific
 RUN a2enmod ssl
 RUN a2ensite default-ssl
 WORKDIR /sbin/
-CMD ["service", "apache2", "reload"]
+CMD ["apache2ctl", "-D", "FOREGROUND"]
