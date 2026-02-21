@@ -24,9 +24,7 @@ RUN composer install
 WORKDIR /etc/apache2/
 RUN mkdir certificate
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/certificate/apache.key -out /etc/apache2/certificate/apache.crt -subj "/CN=www.example.com"
-RUN sed -i '/SSLCertificateFile/c\SSLCertificateFile /etc/apache2/certificate/apache.crt' sites-available/default-ssl.conf
-RUN sed -i '/SSLCertificateKeyFile/c\SSLCertificateKeyFile /etc/apache2/certificate/apache.key' sites-available/default-ssl.conf
+RUN sed -i '/ssl-cert-snakeoil.pem/c\SSLCertificateFile /etc/apache2/certificate/apache.crt' sites-available/default-ssl.conf
+RUN sed -i '/ssl-cert-snakeoil.key/c\SSLCertificateKeyFile /etc/apache2/certificate/apache.key' sites-available/default-ssl.conf
 RUN a2enmod ssl
 RUN a2ensite default-ssl
-WORKDIR /sbin/
-CMD ["apache2ctl", "-D", "FOREGROUND"]
