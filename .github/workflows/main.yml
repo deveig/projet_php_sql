@@ -21,6 +21,8 @@ jobs:
         run: composer require vlucas/phpdotenv
       - name: Run test
         run: phpunit ./tests/unit/IngredientTest.php
+      - name: Run test
+        run: phpunit ./tests/unit/UserTest.php
 
   docker:
     runs-on: ubuntu-latest

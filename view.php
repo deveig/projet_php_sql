@@ -20,9 +20,56 @@
     <header>
         <img class="picture" src="./assets/salad.jpg" alt="Salad" />
         <div>
-            <h1 class="main-title">Salad</h1>
+            <h1 class="main-title">Salad of 
+                <?php
+                    if (!$_SESSION["user"]) {
+                ?>                    
+                <form method="post" action="index.php" class="form-title">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="item-datas">
+                                    <label for="user_name">Your name</label>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="item-datas">
+                                    <input id="user_name" name="user_name">
+                                </td>
+                                <td>
+                                    <button class="more-item" name="plus_name" value="plus_name">+</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+                <?php
+                } else {
+                    echo $_SESSION["user"];
+                }
+                ?>
+            </h1>
+            <?php
+                if ($user_error === 'required fields') {
+            ?>                    
+            <span class="warning">All fields are required !</span>
+            <?php
+            }
+                if ($user_error === 'type') {  
+            ?>
+            <span class="warning">Enter your name !</span>
+            <?php
+            }
+            if ($user_error === 'Please enter your name !') {
+            ?>
+            <span class="warning">Please enter your name !</span>
+            <?php
+            }
+            ?>
             <p class="description">Delicious flavored salad !</p>
-      </div>
+        </div>
     </header>
     <main>
         <section>
@@ -61,8 +108,10 @@
         <section>
             <h2 class="subtitle">Ingredients</h2>
             <form method="post" action="index.php">
-                <div class="item-handler"><span>Servings: 
-                    <span><?= count($ingredients) ?></span></span>
+                <div class="item-handler">
+                    <span>Servings: 
+                        <span> <?php if ($_SESSION["ingredients"]) { echo count($_SESSION["ingredients"]); } ?></span>
+                    </span>
                     <div>
                         <button class="more-item" name="plus" value="plus">+</button>
                         <button class="less-item" name="minus" value="minus">-</button>
@@ -87,40 +136,41 @@
                             <td class="item-datas"><input id="metric" name="metric"></td>
                         </tr>
                         <?php
-                            for ($i = 0; $i < count($ingredients); $i++) {
-                            ?>
-                                <tr>
-                                    <td class="item-datas item-number"><?= $i + 1 ?></td>
-                                    <td class="item-datas"><?= htmlspecialchars($ingredients[$i]['ingredient']) ?></td>
-                                    <td class="item-datas"><?= htmlspecialchars($ingredients[$i]['quantity']) ?></td>
-                                    <td class="item-datas"><?= htmlspecialchars($ingredients[$i]['unit']) ?></td>
-                                </tr>
-                            <?php
+                            if ($_SESSION["ingredients"]) {
+                                for ($i = 0; $i < count($_SESSION["ingredients"]); $i++) {
+                                ?>
+                                    <tr>
+                                        <td class="item-datas item-number"><?= $i + 1 ?></td>
+                                        <td class="item-datas"><?= htmlspecialchars($_SESSION["ingredients"][$i]['ingredient']) ?></td>
+                                        <td class="item-datas"><?= htmlspecialchars($_SESSION["ingredients"][$i]['quantity']) ?></td>
+                                        <td class="item-datas"><?= htmlspecialchars($_SESSION["ingredients"][$i]['unit']) ?></td>
+                                    </tr>
+                                <?php
+                                }
                             }
+                                if ($ingredient_error === 'required fields') {
+                                ?>
+                                    <tr>
+                                        <td class="warning" colspan="4">All fields are required !</td>
+                                    </tr>
+                                <?php
+                                }
+                                
+                                if ($ingredient_error === 'type') {
+                                ?>
+                                    <tr>
+                                        <td class="warning" colspan="4">Name and unit are words, quantity is a number.</td>
+                                    </tr>
+                                <?php
+                                }
 
-                            if ($error === 'required fields') {
-                            ?>
-                                <tr>
-                                    <td class="warning" colspan="4">All fields are required !</td>
-                                </tr>
-                            <?php
-                            }
-                            
-                            if ($error === 'type') {
-                            ?>
-                                <tr>
-                                    <td class="warning" colspan="4">Name and unit are words, quantity is a number.</td>
-                                </tr>
-                            <?php
-                            }
-
-                            if ($error === 'no ingredient to remove') {
-                            ?>
-                                <tr>
-                                    <td class="warning" colspan="4">No ingredient to remove !</td>
-                                </tr>
-                            <?php
-                            } ?>
+                                if ($ingredient_error === 'no ingredient to remove') {
+                                ?>
+                                    <tr>
+                                        <td class="warning" colspan="4">No ingredient to remove !</td>
+                                    </tr>
+                                <?php
+                                } ?>
                     </tbody>
                 </table>
             </form>

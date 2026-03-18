@@ -10,16 +10,17 @@ final class IngredientTest extends TestCase
     public function testDisplayIngredients(): void
     {
         // Arrange
-        $data = [array("id" => "1", "ingredient" => "salad", "quantity" => 3, "unit" => "pieces")];
-        $list_of_ingredients = $this->getMockBuilder(Ingredients::class)
+        $data = [array("id" => "1", "ingredient" => "salad", "quantity" => 3, "unit" => "pieces", "user" => 1)];
+        $ingredient = $this->getMockBuilder(Ingredients::class)
             ->disableOriginalConstructor()
             ->getMock();
-        $list_of_ingredients->expects($this->exactly(1))
+        $ingredient->expects($this->exactly(1))
             ->method("display")
             ->willReturn($data);
+        $user_id = 1;
         
         // Act
-        $ingredients = display_ingredients($list_of_ingredients);
+        $ingredients = display_ingredients($ingredient, $user_id);
 
         // Assert
         $this->assertSame($data, $ingredients);
@@ -37,12 +38,13 @@ final class IngredientTest extends TestCase
         $new_ingredient->expects($this->exactly(1))
             ->method("add")
             ->willReturn(true);
+        $user_id = 1;
 
         // Act
-        $error_message = add_ingredient($name, $quantity, $metric, $new_ingredient);
+        $ingredient_error = add_ingredient($name, $quantity, $metric, $new_ingredient, $user_id);
 
         // Assert
-        $this->assertSame(false, $error_message);
+        $this->assertSame(false, $ingredient_error);
     }
 
     public function testAddAnInvalidIngredient(): void
@@ -54,18 +56,19 @@ final class IngredientTest extends TestCase
         $new_ingredient = $this->getMockBuilder(IngredientAdder::class)
             ->disableOriginalConstructor()
             ->getMock();
+        $user_id = 1;
 
         // Act
-        $error_message = add_ingredient($name, $quantity, $metric, $new_ingredient);
+        $ingredient_error = add_ingredient($name, $quantity, $metric, $new_ingredient, $user_id);
 
         // Assert
-        $this->assertSame("required fields", $error_message);
+        $this->assertSame("required fields", $ingredient_error);
     }
 
     public function testDeleteTheLastIngredient(): void
     {
         // Arrange
-        $data = [array("id" => "1", "ingredient" => "salad", "quantity" => 3, "unit" => "pieces")];
+        $data = [array("id" => "1", "ingredient" => "salad", "quantity" => 3, "unit" => "pieces", "user" => 1)];
         $last_ingredient = $this->getMockBuilder(IngredientRemover::class)
             ->disableOriginalConstructor()
             ->getMock();
@@ -73,12 +76,13 @@ final class IngredientTest extends TestCase
         $last_ingredient->expects($this->exactly(1))
             ->method("remove")
             ->willReturn(true);
+        $user_id = 1;
         
         // Act
-        $error_message = remove_ingredient($data, $last_ingredient);
+        $ingredient_error = remove_ingredient($data, $last_ingredient, $user_id);
 
         // Assert
-        $this->assertSame(false, $error_message);
+        $this->assertSame(false, $ingredient_error);
     }
 
     public function testDeleteWhenNoIngredient(): void
@@ -88,11 +92,12 @@ final class IngredientTest extends TestCase
         $last_ingredient = $this->getMockBuilder(IngredientRemover::class)
             ->disableOriginalConstructor()
             ->getMock();
+        $user_id = 1;
 
         // Act
-        $error_message = remove_ingredient($data, $last_ingredient);
+        $ingredient_error = remove_ingredient($data, $last_ingredient, $user_id);
 
         // Assert
-        $this->assertSame("no ingredient to remove", $error_message);
+        $this->assertSame("no ingredient to remove", $ingredient_error);
     }
 }
