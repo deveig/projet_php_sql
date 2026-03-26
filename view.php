@@ -20,7 +20,7 @@
     <header>
         <img class="picture" src="./assets/salad.jpg" alt="Salad" />
         <div>
-            <h1 class="main-title">Salad of 
+            <h1 class="main-title">
                 <?php
                     if (!$_SESSION["user"]) {
                 ?>                    
@@ -50,6 +50,7 @@
                     echo $_SESSION["user"];
                 }
                 ?>
+                's salad
             </h1>
             <?php
                 if ($user_error === 'required fields') {
