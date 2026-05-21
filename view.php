@@ -68,6 +68,11 @@
             <span class="warning">Please enter your name !</span>
             <?php
             }
+            if ($user_error === 'Internal Server Error !') {
+            ?>
+            <span class="warning">Internal Server Error !</span>
+            <?php
+            }
             ?>
             <p class="description">Delicious flavored salad !</p>
         </div>

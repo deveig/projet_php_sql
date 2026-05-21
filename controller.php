@@ -43,5 +43,6 @@ try {
         }
     }
 } catch (Exception $error) {
-    die('No ingredients !');
+    //die('No ingredients !');
+    $user_error = 'Internal Server Error !';
 }
